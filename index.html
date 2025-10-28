@@ -1,502 +1,1210 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="InkCraft: expertos en personalización de artículos como tazas personalizadas, playeras personalizadas, termos y accesorios únicos. Crea regalos personalizados con estilo y calidad." />
-  <meta name="keywords" content="personalización de artículos, regalos personalizados, InkCraft, tazas personalizadas, playeras personalizadas" />
-  <meta name="author" content="InkCraft" />
-  <title>InkCraft | Personalización Creativa de Artículos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InkCraft - Personalización Creativa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --cyan: #00bcd4;
+            --magenta: #e91e63;
+            --yellow: #ffeb3b;
+            --black: #212121;
+            --gray: #f5f5f5;
+            --dark-gray: #757575;
+            --white: #ffffff;
+        }
 
-  <!-- Fuentes de Google -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    :root {
-      --color-primary: #8A2BE2; /* Morado eléctrico */
-      --color-dark: #1a1a1a;
-      --color-light: #ffffff;
-      --color-gray: #f5f5f5;
-      --shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    body {
-      font-family: 'Open Sans', sans-serif;
-      color: var(--color-dark);
-      background-color: var(--color-light);
-      line-height: 1.6;
-    }
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
 
-    h1, h2, h3, h4 {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-    }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
 
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem 0;
-    }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--black);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
 
-    /* Header */
-    header {
-      background-color: var(--color-light);
-      box-shadow: var(--shadow);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+        .logo i {
+            margin-right: 10px;
+            background: linear-gradient(45deg, var(--cyan), var(--magenta), var(--yellow));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
 
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-    }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
 
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--color-primary);
-      text-decoration: none;
-    }
+        .nav-links li {
+            margin-left: 25px;
+        }
 
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-    }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
 
-    .nav-links a {
-      text-decoration: none;
-      color: var(--color-dark);
-      font-weight: 600;
-      transition: color 0.3s;
-    }
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
 
-    .nav-links a:hover {
-      color: var(--color-primary);
-    }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--cyan), var(--magenta));
+            transition: width 0.3s ease;
+        }
 
-    .btn {
-      display: inline-block;
-      background-color: var(--color-primary);
-      color: white;
-      padding: 0.8rem 1.8rem;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background-color 0.3s, transform 0.2s;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-    }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-    .btn:hover {
-      background-color: #7209b7;
-      transform: translateY(-2px);
-    }
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
 
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(to right, rgba(26,26,26,0.9), rgba(26,26,26,0.7)), url('https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
-      background-size: cover;
-      background-position: center;
-      color: white;
-      text-align: center;
-      padding: 6rem 1rem;
-    }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.9), rgba(233, 30, 99, 0.9)), url('https://picsum.photos/seed/printing/1600/900.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
 
-    .hero h1 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-    }
+        .hero-content {
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
 
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 2rem;
-    }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
 
-    /* Section Styling */
-    section {
-      padding: 4rem 0;
-    }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    .section-title {
-      text-align: center;
-      margin-bottom: 3rem;
-      font-size: 2.2rem;
-      color: var(--color-dark);
-    }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--yellow);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
 
-    /* Products */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 2rem;
-    }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background-color: var(--white);
+        }
 
-    .product-card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s;
-    }
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            margin-left: 15px;
+        }
 
-    .product-card:hover {
-      transform: translateY(-8px);
-    }
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--black);
+        }
 
-    .product-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: var(--gray);
+        }
 
-    .product-info {
-      padding: 1.2rem;
-      text-align: center;
-    }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
 
-    /* How It Works */
-    .steps {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
 
-    .step {
-      background: var(--color-gray);
-      padding: 2rem;
-      border-radius: 12px;
-      text-align: center;
-      max-width: 300px;
-      flex: 1;
-    }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--cyan), var(--magenta));
+        }
 
-    .step-number {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      background: var(--color-primary);
-      color: white;
-      border-radius: 50%;
-      line-height: 40px;
-      margin-bottom: 1rem;
-      font-weight: bold;
-    }
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
 
-    /* About */
-    .about-content {
-      display: flex;
-      align-items: center;
-      gap: 3rem;
-      flex-wrap: wrap;
-    }
+        .about-text {
+            flex: 1;
+        }
 
-    .about-text {
-      flex: 1;
-      min-width: 300px;
-    }
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+        }
 
-    .about-image {
-      flex: 1;
-      min-width: 300px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
+        .about-image {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
 
-    .about-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
 
-    /* Testimonials */
-    .testimonials {
-      background-color: var(--color-gray);
-    }
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
 
-    .testimonial-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-    }
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+        }
 
-    .testimonial {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-    }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
 
-    .testimonial p {
-      font-style: italic;
-      margin-bottom: 1rem;
-    }
+        .product-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
-    .client {
-      font-weight: 600;
-      color: var(--color-primary);
-    }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
 
-    /* Contact */
-    .contact-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3rem;
-    }
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
 
-    .contact-form {
-      flex: 1;
-      min-width: 300px;
-    }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
 
-    .contact-info {
-      flex: 1;
-      min-width: 300px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
 
-    .form-group {
-      margin-bottom: 1.2rem;
-    }
+        .product-info {
+            padding: 20px;
+        }
 
-    .form-group label {
-      display: block;
-      margin-bottom: 0.4rem;
-      font-weight: 600;
-    }
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
 
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.8rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-family: 'Open Sans', sans-serif;
-    }
+        .product-info p {
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+        }
 
-    .social-links {
-      margin-top: 1.5rem;
-    }
+        .product-btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--cyan);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
 
-    .social-links a {
-      display: inline-block;
-      margin-right: 1rem;
-      color: var(--color-primary);
-      font-size: 1.4rem;
-      text-decoration: none;
-    }
+        .product-btn:hover {
+            background-color: var(--magenta);
+            transform: translateY(-2px);
+        }
 
-    /* Footer */
-    footer {
-      background-color: var(--color-dark);
-      color: white;
-      text-align: center;
-      padding: 2rem 0;
-    }
+        /* Portfolio Section */
+        .portfolio {
+            padding: 80px 0;
+            background-color: var(--gray);
+        }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.2rem;
-      }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
 
-      .section-title {
-        font-size: 1.8rem;
-      }
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 250px;
+        }
 
-      .navbar {
-        flex-direction: column;
-        gap: 1rem;
-      }
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
 
-      .steps, .about-content, .contact-container {
-        flex-direction: column;
-      }
-    }
-  </style>
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-info h3 {
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .portfolio-info p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+        }
+
+        .testimonials-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 30px;
+            padding-bottom: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .testimonial-card {
+            min-width: 300px;
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 60px;
+            color: var(--cyan);
+            opacity: 0.2;
+        }
+
+        .testimonial-text {
+            margin-bottom: 20px;
+            font-style: italic;
+            color: var(--dark-gray);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: var(--gray);
+        }
+
+        .contact-container {
+            display: flex;
+            gap: 50px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 30px;
+            color: var(--dark-gray);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: var(--cyan);
+            width: 30px;
+        }
+
+        .contact-form {
+            flex: 1;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--cyan);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, var(--cyan), var(--magenta));
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--cyan), var(--magenta));
+        }
+
+        .footer-section p {
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--cyan);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .btn-outline {
+                display: block;
+                margin: 15px auto 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <nav class="navbar">
-        <a href="#" class="logo">InkCraft</a>
-        <div class="nav-links">
-          <a href="#productos">Productos</a>
-          <a href="#como-funciona">Cómo funciona</a>
-          <a href="#nosotros">Nosotros</a>
-          <a href="#contacto">Contacto</a>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Hero / Inicio -->
-  <section class="hero" id="inicio">
-    <div class="container">
-      <h1>Crea lo Único con InkCraft</h1>
-      <p>Personalizamos tazas, termos, playeras, accesorios y más. Regalos únicos, hechos con estilo y pensados para ti.</p>
-      <a href="#productos" class="btn">Personaliza ahora</a>
-    </div>
-  </section>
-
-  <!-- Catálogo/Productos -->
-  <section id="productos">
-    <div class="container">
-      <h2 class="section-title">Nuestros Productos Personalizados</h2>
-      <div class="products-grid">
-        <div class="product-card">
-          <img src="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tazas personalizadas" class="product-img">
-          <div class="product-info">
-            <h3>Tazas Personalizadas</h3>
-            <p>Ideal para regalos, oficinas o tu colección personal.</p>
-          </div>
-        </div>
-        <div class="product-card">
-          <img src="https://images.unsplash.com/photo-1521335629791-ce4aec67dd15?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Playeras personalizadas" class="product-img">
-          <div class="product-info">
-            <h3>Playeras Personalizadas</h3>
-            <p>Diseños únicos, impresión de alta calidad y tela premium.</p>
-          </div>
-        </div>
-        <div class="product-card">
-          <img src="https://images.unsplash.com/photo-1618336753753-2c3f3f8a8a8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Termos personalizados" class="product-img">
-          <div class="product-info">
-            <h3>Termos Personalizados</h3>
-            <p>Mantén tu bebida favorita con estilo y temperatura perfecta.</p>
-          </div>
-        </div>
-        <div class="product-card">
-          <img src="https://images.unsplash.com/photo-1611078489935-8e45e3d5f85d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Accesorios personalizados" class="product-img">
-          <div class="product-info">
-            <h3>Accesorios</h3>
-            <p>Desde fundas hasta llaveros: hazlos tuyos.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Cómo funciona -->
-  <section id="como-funciona">
-    <div class="container">
-      <h2 class="section-title">¿Cómo funciona?</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3>Elige tu producto</h3>
-          <p>Selecciona entre tazas, playeras, termos o accesorios.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3>Personalízalo</h3>
-          <p>Agrega tu diseño, foto, nombre o mensaje favorito.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3>Recíbelo en casa</h3>
-          <p>Te lo enviamos listo para usar, con empaque premium.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Nosotros -->
-  <section id="nosotros">
-    <div class="container">
-      <h2 class="section-title">Sobre InkCraft</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <p><strong>InkCraft</strong> nació en 2020 con una misión clara: transformar objetos cotidianos en piezas únicas llenas de significado. Creemos que cada regalo, cada detalle, debe contar una historia.</p>
-          <p><strong>Misión:</strong> Ofrecer productos personalizados de alta calidad, con diseños creativos y un servicio excepcional.</p>
-          <p><strong>Valores:</strong> Creatividad, autenticidad, sostenibilidad y atención al cliente.</p>
-        </div>
-        <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Equipo de InkCraft">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonios -->
-  <section class="testimonials" id="testimonios">
-    <div class="container">
-      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-      <div class="testimonial-grid">
-        <div class="testimonial">
-          <p>“¡Mi taza personalizada es mi favorita! La calidad de la impresión es increíble.”</p>
-          <div class="client">— Ana R., Ciudad de México</div>
-        </div>
-        <div class="testimonial">
-          <p>“Pedí playeras para mi boda y todos quedaron encantados. ¡Gracias, InkCraft!”</p>
-          <div class="client">— Luis M., Guadalajara</div>
-        </div>
-        <div class="testimonial">
-          <p>“Rápido, fácil y con un toque artístico. Volveré a comprar sin dudarlo.”</p>
-          <div class="client">— Sofía T., Monterrey</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contacto -->
-  <section id="contacto">
-    <div class="container">
-      <h2 class="section-title">Contáctanos</h2>
-      <div class="contact-container">
-        <div class="contact-form">
-          <form action="#" method="POST">
-            <div class="form-group">
-              <label for="name">Nombre</label>
-              <input type="text" id="name" name="name" required>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <i class="fas fa-palette"></i>
+                InkCraft
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#about">Sobre Nosotros</a></li>
+                <li><a href="#products">Productos</a></li>
+                <li><a href="#portfolio">Portafolio</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
             </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-              <label for="message">Mensaje</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn">Enviar mensaje</button>
-          </form>
-        </div>
-        <div class="contact-info">
-          <p>¿Prefieres escribirnos directamente?</p>
-          <p><strong>WhatsApp:</strong> <a href="https://wa.me/521234567890" target="_blank" style="color: var(--color-primary); text-decoration: none;">+52 123 456 7890</a></p>
-          <div class="social-links">
-            <a href="#" target="_blank" aria-label="Instagram">📱 Instagram</a>
-            <a href="#" target="_blank" aria-label="Facebook">📘 Facebook</a>
-            <a href="#" target="_blank" aria-label="TikTok">🎵 TikTok</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        </nav>
+    </header>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 InkCraft. Todos los derechos reservados. | Personalización de artículos con estilo y alma.</p>
-    </div>
-  </footer>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Imagina, diseña y personaliza con InkCraft</h1>
+            <p>Transformamos tus ideas en productos únicos y memorables</p>
+            <a href="#contact" class="btn">Cotiza tu diseño</a>
+            <a href="#products" class="btn btn-outline">Personaliza ahora</a>
+        </div>
+    </section>
 
+    <!-- About Section -->
+    <section id="about" class="about fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre Nosotros</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>En InkCraft, somos apasionados por la personalización y la creatividad. Desde 2015, hemos ayudado a empresas y particulares a transformar sus ideas en productos únicos que dejan una impresión duradera.</p>
+                    <p>Nuestro equipo de expertos combina tecnología de impresión de vanguardia con un enfoque meticuloso en los detalles para garantizar que cada producto que creamos sea de la más alta calidad.</p>
+                    <p>Ya sea que necesites regalos personalizados, merchandising para tu empresa o simplemente quieras dar un toque especial a tus objetos cotidianos, en InkCraft estamos aquí para hacer realidad tu visión.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://picsum.photos/seed/workshop/600/400.jpg" alt="Taller de InkCraft">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Catálogo de Productos</h2>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://picsum.photos/seed/mug/400/300.jpg" alt="Tazas personalizadas">
+                    </div>
+                    <div class="product-info">
+                        <h3>Tazas</h3>
+                        <p>Tazas de cerámica de alta calidad con diseños personalizados mediante sublimación.</p>
+                        <a href="#contact" class="product-btn">Solicitar cotización</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://picsum.photos/seed/tshirt/400/300.jpg" alt="Playeras personalizadas">
+                    </div>
+                    <div class="product-info">
+                        <h3>Playeras</h3>
+                        <p>Playeras de algodón y poliéster con impresión digital directa o serigrafía.</p>
+                        <a href="#contact" class="product-btn">Solicitar cotización</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://picsum.photos/seed/thermos/400/300.jpg" alt="Termos personalizados">
+                    </div>
+                    <div class="product-info">
+                        <h3>Termos</h3>
+                        <p>Termos de acero inoxidable con diseño personalizado, perfectos para mantener tus bebidas.</p>
+                        <a href="#contact" class="product-btn">Solicitar cotización</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://picsum.photos/seed/caps/400/300.jpg" alt="Gorras personalizadas">
+                    </div>
+                    <div class="product-info">
+                        <h3>Gorras</h3>
+                        <p>Gorras de diferentes estilos con bordado o impresión personalizada.</p>
+                        <a href="#contact" class="product-btn">Solicitar cotización</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://picsum.photos/seed/keychains/400/300.jpg" alt="Llaveros personalizados">
+                    </div>
+                    <div class="product-info">
+                        <h3>Llaveros</h3>
+                        <p>Llaveros de acrílico, metal o PVC con tu diseño o logo.</p>
+                        <a href="#contact" class="product-btn">Solicitar cotización</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://picsum.photos/seed/cushions/400/300.jpg" alt="Cojines personalizados">
+                    </div>
+                    <div class="product-info">
+                        <h3>Cojines</h3>
+                        <p>Cojines decorativos con diseños personalizados para tu hogar u oficina.</p>
+                        <a href="#contact" class="product-btn">Solicitar cotización</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://picsum.photos/seed/plaques/400/300.jpg" alt="Placas y reconocimientos">
+                    </div>
+                    <div class="product-info">
+                        <h3>Placas y reconocimientos</h3>
+                        <p>Placas de reconocimiento y trofeos personalizados para eventos y empresas.</p>
+                        <a href="#contact" class="product-btn">Solicitar cotización</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://picsum.photos/seed/bags/400/300.jpg" alt="Bolsas personalizadas">
+                    </div>
+                    <div class="product-info">
+                        <h3>Bolsas</h3>
+                        <p>Bolsas de tela, lonas o ecológicas con tu diseño personalizado.</p>
+                        <a href="#contact" class="product-btn">Solicitar cotización</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestro Portafolio</h2>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://picsum.photos/seed/portfolio1/400/300.jpg" alt="Trabajo personalizado 1">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Set de oficina personalizado</h3>
+                            <p>Para empresa tecnológica</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://picsum.photos/seed/portfolio2/400/300.jpg" alt="Trabajo personalizado 2">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Playeras para evento deportivo</h3>
+                            <p>Maratón ciudad 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://picsum.photos/seed/portfolio3/400/300.jpg" alt="Trabajo personalizado 3">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Kit de bienvenida</h3>
+                            <p>Para nuevo empleado</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://picsum.photos/seed/portfolio4/400/300.jpg" alt="Trabajo personalizado 4">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Regalos corporativos</h3>
+                            <p>Temporada navideña</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://picsum.photos/seed/portfolio5/400/300.jpg" alt="Trabajo personalizado 5">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Merchandising para banda</h3>
+                            <p>Gira de conciertos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://picsum.photos/seed/portfolio6/400/300.jpg" alt="Trabajo personalizado 6">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Regalos para boda</h3>
+                            <p>Set personalizado para invitados</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Testimonios de Clientes</h2>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">InkCraft transformó completamente nuestra imagen corporativa. La calidad de los productos y la atención al detalle son excepcionales. ¡Totalmente recomendados!</p>
+                    <div class="testimonial-author">
+                        <img src="https://picsum.photos/seed/person1/100/100.jpg" alt="Cliente 1" class="author-image">
+                        <div class="author-info">
+                            <h4>María González</h4>
+                            <p>Directora de Marketing, Tech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Trabajé con InkCraft para los regalos de mi boda y el resultado fue increíble. Todos nuestros invitados quedaron encantados con los detalles personalizados.</p>
+                    <div class="testimonial-author">
+                        <img src="https://picsum.photos/seed/person2/100/100.jpg" alt="Cliente 2" class="author-image">
+                        <div class="author-info">
+                            <h4>Carlos Rodríguez</h4>
+                            <p>Cliente satisfecho</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Como artista, necesitaba que mi merchandising reflejara la calidad de mi trabajo. InkCraft superó todas mis expectativas con playeras y pósters impresionantes.</p>
+                    <div class="testimonial-author">
+                        <img src="https://picsum.photos/seed/person3/100/100.jpg" alt="Cliente 3" class="author-image">
+                        <div class="author-info">
+                            <h4>Laura Martínez</h4>
+                            <p>Artista visual</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">La rapidez y profesionalismo de InkCraft nos permitió tener listo nuestro material para un evento importante en tiempo récord. ¡Gracias por el excelente trabajo!</p>
+                    <div class="testimonial-author">
+                        <img src="https://picsum.photos/seed/person4/100/100.jpg" alt="Cliente 4" class="author-image">
+                        <div class="author-info">
+                            <h4>Javier Hernández</h4>
+                            <p>Organizador de eventos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact fade-in">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contacto</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>¿Listo para personalizar?</h3>
+                    <p>Contáctanos hoy mismo y transforma tus ideas en productos únicos. Nuestro equipo está listo para ayudarte a crear el diseño perfecto.</p>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Dirección</h4>
+                            <p>Calle Creatividad 123, Col. Diseño, Ciudad, CP 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>+52 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Correo electrónico</h4>
+                            <p>info@inkcraft.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Horario</h4>
+                            <p>Lunes a Viernes: 9:00 AM - 6:00 PM<br>Sábados: 9:00 AM - 2:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nombre completo</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="product">Tipo de artículo</label>
+                            <select id="product" name="product" required>
+                                <option value="" disabled selected>Selecciona una opción</option>
+                                <option value="tazas">Tazas</option>
+                                <option value="playeras">Playeras</option>
+                                <option value="termos">Termos</option>
+                                <option value="gorras">Gorras</option>
+                                <option value="llaveros">Llaveros</option>
+                                <option value="cojines">Cojines</option>
+                                <option value="placas">Placas y reconocimientos</option>
+                                <option value="bolsas">Bolsas</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Solicitar información</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>InkCraft</h3>
+                    <p>Transformamos tus ideas en productos únicos y memorables a través de la personalización creativa.</p>
+                    <div class="social-links">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces rápidos</h3>
+                    <p><a href="#about" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">Sobre Nosotros</a></p>
+                    <p><a href="#products" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">Productos</a></p>
+                    <p><a href="#portfolio" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">Portafolio</a></p>
+                    <p><a href="#contact" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">Contacto</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> Calle Creatividad 123, Col. Diseño</p>
+                    <p><i class="fas fa-phone" style="margin-right: 10px;"></i> +52 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> info@inkcraft.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 InkCraft. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/525551234567?text=Hola%2C%20estoy%20interesado%20en%20personalizar%20algunos%20productos" target="_blank" class="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Menu toggle for mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+                header.style.padding = '5px 0';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                header.style.padding = '15px 0';
+            }
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const product = document.getElementById('product').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would normally send the data to a server
+            // For this example, we'll just show a success message
+            const formContainer = document.querySelector('.contact-form');
+            formContainer.innerHTML = `
+                <div style="text-align: center; padding: 40px 20px;">
+                    <i class="fas fa-check-circle" style="font-size: 60px; color: var(--cyan); margin-bottom: 20px;"></i>
+                    <h3 style="margin-bottom: 15px;">¡Mensaje enviado con éxito!</h3>
+                    <p style="color: var(--dark-gray); margin-bottom: 20px;">Gracias por contactarnos, ${name}. Hemos recibido tu solicitud y te responderemos a la brevedad posible.</p>
+                    <button onclick="location.reload()" class="btn">Enviar otro mensaje</button>
+                </div>
+            `;
+            
+            // Scroll to the form to show the success message
+            formContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // Testimonials carousel
+        const testimonialsContainer = document.querySelector('.testimonials-container');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        testimonialsContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - testimonialsContainer.offsetLeft;
+            scrollLeft = testimonialsContainer.scrollLeft;
+        });
+
+        testimonialsContainer.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+
+        testimonialsContainer.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+
+        testimonialsContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - testimonialsContainer.offsetLeft;
+            const walk = (x - startX) * 2;
+            testimonialsContainer.scrollLeft = scrollLeft - walk;
+        });
+    </script>
 </body>
 </html>
-
