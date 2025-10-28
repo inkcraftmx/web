@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="InkCraft: expertos en personalización de artículos como tazas personalizadas, playeras personalizadas, termos y accesorios únicos. Crea regalos personalizados con estilo y calidad." />
+  <meta name="keywords" content="personalización de artículos, regalos personalizados, InkCraft, tazas personalizadas, playeras personalizadas" />
+  <meta name="author" content="InkCraft" />
+  <title>InkCraft | Personalización Creativa de Artículos</title>
+
+  <!-- Fuentes de Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-primary: #8A2BE2; /* Morado eléctrico */
+      --color-dark: #1a1a1a;
+      --color-light: #ffffff;
+      --color-gray: #f5f5f5;
+      --shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--color-dark);
+      background-color: var(--color-light);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    /* Header */
+    header {
+      background-color: var(--color-light);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--color-dark);
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-primary);
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--color-primary);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background-color: #7209b7;
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(to right, rgba(26,26,26,0.9), rgba(26,26,26,0.7)), url('https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 6rem 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Section Styling */
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2.2rem;
+      color: var(--color-dark);
+    }
+
+    /* Products */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 1.2rem;
+      text-align: center;
+    }
+
+    /* How It Works */
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .step {
+      background: var(--color-gray);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 300px;
+      flex: 1;
+    }
+
+    .step-number {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: var(--color-primary);
+      color: white;
+      border-radius: 50%;
+      line-height: 40px;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    /* About */
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .about-image {
+      flex: 1;
+      min-width: 300px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background-color: var(--color-gray);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .client {
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    /* Contact */
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+    }
+
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .social-links {
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin-right: 1rem;
+      color: var(--color-primary);
+      font-size: 1.4rem;
+      text-decoration: none;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--color-dark);
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .steps, .about-content, .contact-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <a href="#" class="logo">InkCraft</a>
+        <div class="nav-links">
+          <a href="#productos">Productos</a>
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero / Inicio -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <h1>Crea lo Único con InkCraft</h1>
+      <p>Personalizamos tazas, termos, playeras, accesorios y más. Regalos únicos, hechos con estilo y pensados para ti.</p>
+      <a href="#productos" class="btn">Personaliza ahora</a>
+    </div>
+  </section>
+
+  <!-- Catálogo/Productos -->
+  <section id="productos">
+    <div class="container">
+      <h2 class="section-title">Nuestros Productos Personalizados</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tazas personalizadas" class="product-img">
+          <div class="product-info">
+            <h3>Tazas Personalizadas</h3>
+            <p>Ideal para regalos, oficinas o tu colección personal.</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1521335629791-ce4aec67dd15?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Playeras personalizadas" class="product-img">
+          <div class="product-info">
+            <h3>Playeras Personalizadas</h3>
+            <p>Diseños únicos, impresión de alta calidad y tela premium.</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1618336753753-2c3f3f8a8a8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Termos personalizados" class="product-img">
+          <div class="product-info">
+            <h3>Termos Personalizados</h3>
+            <p>Mantén tu bebida favorita con estilo y temperatura perfecta.</p>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1611078489935-8e45e3d5f85d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Accesorios personalizados" class="product-img">
+          <div class="product-info">
+            <h3>Accesorios</h3>
+            <p>Desde fundas hasta llaveros: hazlos tuyos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cómo funciona -->
+  <section id="como-funciona">
+    <div class="container">
+      <h2 class="section-title">¿Cómo funciona?</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Elige tu producto</h3>
+          <p>Selecciona entre tazas, playeras, termos o accesorios.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Personalízalo</h3>
+          <p>Agrega tu diseño, foto, nombre o mensaje favorito.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Recíbelo en casa</h3>
+          <p>Te lo enviamos listo para usar, con empaque premium.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nosotros -->
+  <section id="nosotros">
+    <div class="container">
+      <h2 class="section-title">Sobre InkCraft</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p><strong>InkCraft</strong> nació en 2020 con una misión clara: transformar objetos cotidianos en piezas únicas llenas de significado. Creemos que cada regalo, cada detalle, debe contar una historia.</p>
+          <p><strong>Misión:</strong> Ofrecer productos personalizados de alta calidad, con diseños creativos y un servicio excepcional.</p>
+          <p><strong>Valores:</strong> Creatividad, autenticidad, sostenibilidad y atención al cliente.</p>
+        </div>
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Equipo de InkCraft">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section class="testimonials" id="testimonios">
+    <div class="container">
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <p>“¡Mi taza personalizada es mi favorita! La calidad de la impresión es increíble.”</p>
+          <div class="client">— Ana R., Ciudad de México</div>
+        </div>
+        <div class="testimonial">
+          <p>“Pedí playeras para mi boda y todos quedaron encantados. ¡Gracias, InkCraft!”</p>
+          <div class="client">— Luis M., Guadalajara</div>
+        </div>
+        <div class="testimonial">
+          <p>“Rápido, fácil y con un toque artístico. Volveré a comprar sin dudarlo.”</p>
+          <div class="client">— Sofía T., Monterrey</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto">
+    <div class="container">
+      <h2 class="section-title">Contáctanos</h2>
+      <div class="contact-container">
+        <div class="contact-form">
+          <form action="#" method="POST">
+            <div class="form-group">
+              <label for="name">Nombre</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Mensaje</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn">Enviar mensaje</button>
+          </form>
+        </div>
+        <div class="contact-info">
+          <p>¿Prefieres escribirnos directamente?</p>
+          <p><strong>WhatsApp:</strong> <a href="https://wa.me/521234567890" target="_blank" style="color: var(--color-primary); text-decoration: none;">+52 123 456 7890</a></p>
+          <div class="social-links">
+            <a href="#" target="_blank" aria-label="Instagram">📱 Instagram</a>
+            <a href="#" target="_blank" aria-label="Facebook">📘 Facebook</a>
+            <a href="#" target="_blank" aria-label="TikTok">🎵 TikTok</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 InkCraft. Todos los derechos reservados. | Personalización de artículos con estilo y alma.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
+
